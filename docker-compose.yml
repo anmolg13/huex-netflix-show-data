@@ -1,0 +1,21 @@
+version: '3'
+ 
+services:
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ANMOLG@1312
+  app:
+    build: .
+    ports:
+      - "9000:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: ANMOLG@1312
+    depends_on:
+      - db
